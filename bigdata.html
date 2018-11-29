@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<title>大数据展示平台</title>
+		<!-- 引入 echarts.js -->
+		<script src="./js/echarts.js"></script>
+		<script src="js/main.js" type="text/javascript" charset="utf-8"></script>
+		<script src="./js/nav.js"></script>
+		<script src="./js/jquery-1.8.3.min.js"></script>
+	</head>
+	<link rel="stylesheet" href="./bigdata.css" />
+
+	<body style="overflow-y: hidden">
+		<!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+		<header> 易思普冰雪场馆运营大数据分析平台
+		<div class="header_left"></div>
+		<div class="header_right"></div>
+		</header>
+		<nav>
+			<ul>
+
+				<li>当前在馆人数：<span style="color: #00ffe4;"id="peopleNum"></span></li>
+				<li>总人次：<span style="color: #00ffe4;"id="total">50</span></li>
+				<li>北京时间：<span class="time"></span></li>
+				<li>天气：晴</li>
+				<li>温度：27℃</li>
+				<li>湿度：65%</li>
+				
+			</ul>
+
+		</nav>
+		<div class="qiuti"></div>
+		<div class="main">
+			<div class="part1">
+				<div class="dataWarp">
+					<div id="main1" style="width: 350px;height:350px;">	
+				
+					</div>
+				</div>
+				<div class="dataWarp">
+					<div id="main2" style="width: 380px;height:330px;">
+					
+					</div>
+				</div>
+				<div class="dataWarp">
+					<div id="main3" style="width: 360px;height:360px;">
+					
+					</div>
+				</div>
+				<div class="dataWarp">
+					<div id="main4" style="width: 380px;height:330px;">
+					
+					</div>
+				</div>
+			</div>
+			<div class="part2">
+				<div class="dataWarp2"  >
+					<div id="main5" style="width: 350px;height:300px;">
+					
+					</div>
+				</div>
+				<div  id="dataWarp3">
+					<div id="main6" style="width:800px;height:300px;padding:10px;">
+					<p style="font-size: 20px; font-family: monospace;">用户画像</p>
+					<div class="part6-1">
+						<div id="main_61"></div>
+						<div id="main_62"></div>
+						<div id="main_63"></div>
+					</div>
+					<div class="part6-2">
+						<div id="main_64"></div>
+					    <div id="main_65"></div>
+					</div>
+					</div>
+				</div>
+				<div class="dataWarp2"  >
+					<div id="main7" style="width: 360px;height:300px;">会员来源</div>
+					</div>
+				</div>
+				
+				
+				
+			
+			
+		</div>
+		<script type="text/javascript">
+			//      main1
+			var myChart = echarts.init(document.getElementById('main1'));
+
+			// 指定图表的配置项和数据
+			var option = {
+				title: {
+					text: '票种占比',
+					textStyle: {
+						color: '#fff',
+//,						
+					},
+					subtext: '',
+					x: 'center'
+				},
+				tooltip: {
+					trigger: 'item',
+					formatter: "{a} <br/>{b} : {c} ({d}%)"
+				},
+				legend: {
+					orient: 'vertical',
+					left: '20',
+					top:"20",
+					 textStyle: {
+        				color: '#fff'
+    			},
+					data: ['团队', '散客', '会员']
+				},
+				series: [{
+					name: '访问来源',
+					type: 'pie',
+					radius: '55%',
+					center: ['50%', '60%'],
+					data: [{
+							value: 335,
+							name: '团队'
+						},
+						{
+							value: 601,
+							name: '散客'
+						},
+						{
+							value: 331,
+							name: '会员'
+						},
+						//              {value:135, name:'视频广告'},
+						//              {value:1548, name:'搜索引擎'}
+					],
+					itemStyle: {
+						//          	color:"#f9ff4f",
+						emphasis: {
+							shadowBlur: 10,
+							shadowOffsetX: 0,
+							shadowColor: 'rgba(255, 255, 255, 0)'
+						}
+					},
+					 color: ['rgb(106,189,232)','rgb(236,138,197)','rgb(255,253,92)']
+				}]
+			};
+
+			// 使用刚指定的配置项和数据显示图表。
+			myChart.setOption(option);
+
+			//      main2
+			var myChart = echarts.init(document.getElementById('main2'));
+
+			option = {
+				title: {
+					text: '客流分析',
+					textStyle: {
+						color: '#fff',
+//,						
+					},
+					subtext: '',
+					x: 'center'
+				},
+				    xAxis: {
+				        type: 'category',
+				        axisLabel: {
+										//          inside: true,
+										textStyle: {
+											color: '#fff'
+										},
+										interval: 1
+									},
+				        data: [ '9时','10时','11时','12时', '13时','14时', '15时', '16时','17时','18时', '19时','20时', '21时']
+				    },
+				    yAxis: {
+				        type: 'value',
+				        axisLabel: {
+										//          inside: true,
+										textStyle: {
+											color: '#fff'
+										},
+										interval: "auto"
+									},
+				    },
+				    
+					    series: [{
+					        data: [30,100, 210,150 , 110, 251, 300, 398,361,338,230,310,130],
+					        type: 'line',
+					        itemStyle : {  
+                                normal : {  
+                                	 color: "#fff773",
+                                    lineStyle:{  
+                                        color:'#c9f76f'  
+                                    }  
+                                }  
+                            }, 
+					    }]
+};
+			// 使用刚指定的配置项和数据显示图表。
+			myChart.setOption(option);
+
+			//      main3
+			var myChart = echarts.init(document.getElementById('main3'));
+
+			// 指定图表的配置项和数据
+			option = {
+				backgroundColor: '',
+
+				title: {
+					text: '营业销售占比',
+
+					left: 'center',
+					top: 0,
+					textStyle: {
+						color: '#fff'
+					}
+				},
+
+				tooltip: {
+					trigger: 'item',
+					formatter: "{a} <br/>{b} : {c} ({d}%)"
+				},
+
+				visualMap: {
+					show: false,
+					min: 80,
+					max: 600,
+					inRange: {
+						colorLightness: [0, 1]
+					}
+				},
+				series: [{
+					name: '访问来源',
+					type: 'pie',
+					radius: '55%',
+					center: ['50%', '50%'],
+					data: [{
+							value: 235,
+							name: '培训'
+						},
+						{
+							value: 310,
+							name: '会员卡'
+						},
+						{
+							value: 368,
+							name: '项目'
+						},
+						{
+							value: 435,
+							name: '滑雪票'
+						},
+						{
+							value: 200,
+							name: '商品'
+						}
+					].sort(function(a, b) {
+						return a.value - b.value;
+					}),
+					roseType: 'radius',
+					label: {
+						normal: {
+							textStyle: {
+								color: 'rgba(255, 255, 255, 1)'
+							}
+						}
+					},
+					labelLine: {
+						normal: {
+							lineStyle: {
+								color: 'rgba(255, 255, 255, 1)'
+							},
+							smooth: 0.2,
+							length: 10,
+							length2: 20
+						}
+					},
+					itemStyle: {
+						normal: {
+							color: '#4fe0ff',
+							shadowBlur: 200,
+							shadowColor: 'rgba(0, 0, 0, 0.5)'
+						}
+					},
+
+					animationType: 'scale',
+					animationEasing: 'elasticOut',
+					animationDelay: function(idx) {
+						return Math.random() * 200;
+					}
+				}]
+			};
+
+			// 使用刚指定的配置项和数据显示图表。
+			myChart.setOption(option);
+
+			//main4 
+			var myChart = echarts.init(document.getElementById('main4'));
+
+			var dataAxis = ['美团', '携程', '大众点评', '同程', '驴妈妈', '自营', '其他'];
+			var data = [220, 182, 191, 234, 290, 330, 310];
+			var yMax = 500;
+			var dataShadow = [];
+
+			for(var i = 0; i < data.length; i++) {
+				dataShadow.push(yMax);
+			}
+			
+
+			option = {
+				title: {
+					text: '客源分析占比',
+					left: "center",
+					textStyle: {
+						color: '#fff'
+					},
+					subtext: ''
+				},
+				xAxis: {
+					data: dataAxis,
+			
+		
+					axisLabel: {
+						//          inside: true,
+						textStyle: {
+							color: '#fff'
+						},
+						interval: 0
+					},
+					axisTick: {
+						show: false
+					},
+					axisLine: {
+						show: true
+					},
+					z: 10
+				},
+				yAxis: {
+					axisLine: {
+						show: false
+					},
+					axisTick: {
+						show: false
+					},
+					axisLabel: {
+						textStyle: {
+							color: '#fff'
+						}
+					}
+				},
+				//  dataZoom: [
+				//      {
+				//          type: 'inside'
+				//      }
+				//  ],
+				series: [{ // For shadow
+						type: 'bar',
+						itemStyle: {
+							normal: {
+								color: 'rgba(0,0,0,0.05)'
+							}
+						},
+						barGap: '-100%',
+						barCategoryGap: '50%',
+						data: dataShadow,
+						animation: false
+					},
+					{
+						type: 'bar',
+						itemStyle: {
+							normal: {
+								color: new echarts.graphic.LinearGradient(
+									0, 0, 0, 1, [{
+											offset: 0,
+											color: '#ff83cf'
+										},
+										{
+											offset: 0.5,
+											color: '#eaff00'
+										},
+										{
+											offset: 1,
+											color: '#70ffc4'
+										}
+									]
+								)
+							},
+							emphasis: {
+								color: new echarts.graphic.LinearGradient(
+									0, 0, 0, 1, [{
+											offset: 0,
+											color: 'lightseagreen'
+										},
+										{
+											offset: 0.7,
+											color: 'lightseagreen'
+										},
+										{
+											offset: 1,
+											color: 'lightseagreen'
+										}
+									]
+								)
+							}
+						},
+						data: data
+					}
+				]
+			};
+
+			// Enable data zoom when user click bar.
+			var zoomSize = 6;
+			myChart.on('click', function(params) {
+				console.log(dataAxis[Math.max(params.dataIndex - zoomSize , 0)]);
+				myChart.dispatchAction({
+					type: 'dataZoom',
+					startValue: dataAxis[Math.max(params.dataIndex - zoomSize , 0)],
+					endValue: dataAxis[Math.min(params.dataIndex + zoomSize , data.length - 1)]
+				});
+			});
+			// 使用刚指定的配置项和数据显示图表。
+			myChart.setOption(option);
+
+			//main5 
+			var myChart = echarts.init(document.getElementById('main5'));
+			//			
+			var option = {
+				title: {	
+					text: '装备租赁分析',
+
+					left: 'center',
+					top: 0,
+					textStyle: {
+						color: '#fff'
+					}
+				},
+				dataset: {
+					source: [
+						['score', 'amount', 'product'],
+
+						[83.4, '雪板', ' 雪板'],
+						[78.15, '雪杖', '雪杖'],
+						[79.3, '雪鞋', '雪鞋'],
+						[77.31, '衣服', '衣服'],
+						[9.6, '雪圈', '雪圈'],
+						[20.6, '护具', '护具'],
+
+					]
+				},
+				grid: {
+					containLabel: true
+				},
+				xAxis: {
+					name: 'product',
+					axisLabel: {
+						textStyle: {
+							color: '#fff'
+						}
+					}
+				},
+				yAxis: {
+					type: 'category',
+					axisLabel: {
+						textStyle: {
+							color: '#fff'
+						}
+					}
+				},
+				
+				visualMap: {
+					orient: 'horizontal',
+					left: '210px',
+					top:"25px",
+					min: 10,
+					max: 100,
+					show:false,
+					textStyle: {
+						color: '#fff'
+					},
+					// Map the score column to color
+					dimension: 0,
+					inRange: {
+						color: ['#729cff', '#72ffb1']
+					}
+				},
+				series: [{
+					type: 'bar',
+					encode: {
+						// Map the "amount" column to X axis.
+						x: '数量',
+						// Map the "product" column to Y axis
+						y: '产品'
+					}
+				}]
+			};
+
+			myChart.setOption(option);
+			//		
+
+ 			//main7
+			var myChart = echarts.init(document.getElementById('main7'));
+			option = {
+				title: {
+					text: '会员来源',
+//					left: 'center',
+					top: 20,
+        			left: 20,
+					subtext: '',
+					textStyle: {
+						color: '#fff'
+					},
+
+					top: 20,
+//					left: 10
+				},
+				tooltip: {
+					trigger: 'item',
+					backgroundColor: 'rgba(0,0,250,0.2)'
+				},
+				legend: {
+					type: 'scroll',
+					bottom: 10,
+					data: (function() {
+						var list = [];
+						for(var i = 1; i <= 28; i++) {
+							list.push(i + '');
+						}
+						return list;
+					})()
+				},
+				visualMap: {
+//					left: '300px',
+					right:"0",
+					bottom:"75px",
+					color: ['red', 'yellow'],
+					calculable: true
+				},
+				radar: {
+					indicator: [{
+							text: '朋友介绍',
+							max: 550
+						},
+						{
+							text: '媒体',
+							max: 700
+						},
+						{
+							text: '户外广告',
+							max: 700
+						},
+						{
+							text: '互联网',
+							max: 400
+						},
+						{
+							text: '电话',
+							max: 1800
+						}
+					]
+				},
+				series: (function() {
+					var series = [];
+					for(var i = 1; i <= 28; i++) {
+						series.push({
+							name: '',
+							type: 'radar',
+							symbol: 'none',
+							lineStyle: {
+								width: 1
+							},
+							emphasis: {
+								areaStyle: {
+									color: 'rgba(253,48,159,0.3)'
+								}
+							},
+							data: [{
+								value: [
+									(40 - i) * 10,
+									(38 - i) * 4 + 60,
+									i * 5 + 10,
+									i * 9,
+									i * i / 2
+								],
+								name: i + 2000 + ''
+							}]
+						});
+					}
+					return series;
+				})()
+			};
+
+			myChart.setOption(option);
+
+			//main6 
+			//			 var myChart = echarts.init(document.getElementById('main6'));
+			//
+			//
+			//			        myChart.setOption(option);
+			//			        
+
+			//			main_61  
+			 function queryData2(){
+    	 var i=0;
+    	 var colors=['#393939','#f5b031','#fad797','#59ccf7','#c3b4df'];
+    	 myChart2 = echarts.init(document.getElementById('main_61'));
+    		option2 = {
+    	    tooltip : {
+    	        trigger: 'item',
+    	        formatter: "{a} <br/>{b} : {c} ({d}%)"
+    	    },
+    	    legend: {
+    	        orient : 'vertical',
+    	        x : 'left',
+    	        data:['女','男']
+    	    },
+    	    toolbox: {
+    	        show : true,
+    	        feature : {
+    			
+    	            saveAsImage : {show: true}
+    	        }
+    	    },
+    	    calculable : true,
+    	    series : [
+    	        {
+    	            name:'性别结构',
+    	            type:'pie',
+    	            radius : ['30%', '70%'],
+    	            itemStyle : {
+    	                normal : {
+    	                	color:function(){
+    	                		return colors[i++]; 
+    	                		},
+    	                    label : {
+    	                        show : false
+    	                    },
+    	                    labelLine : {
+    	                        show : false
+    	                    }
+    	                },
+    	                emphasis : {
+    	                    label : {
+    	                        show : true,
+    	                        position : 'center',
+    	                        textStyle : {
+    	                            fontSize : '30',
+    	                            fontWeight : 'bold'
+    	                        }
+    	                    }
+    	                }
+    	            },
+    	            data:[]
+    	           
+    	        }]
+    	};
+    	 
+     }
+
+			myChart.setOption(option);
+			
+			
+			
+			var myChart = echarts.init(document.getElementById('main_61'));
+			var i=0;
+    	 	var colors=['#393939','#f5b031','#fad797','#59ccf7','#c3b4df'];
+			option = {
+    			title: {
+					text: '性别比例',
+					textStyle: {
+						color: '#fff',
+						fontSize:14
+//,						
+					},
+					subtext: '',
+					x: 'center'
+				},
+				tooltip: {
+					title:'qqqqqqq',
+					trigger: 'item',
+					formatter: "{a} <br/>{b}: {c} ({d}%)"
+				},
+				legend: {
+					orient: 'vertical',
+					x: 'left',
+					textStyle: {
+        				color: '#fff'
+    			},
+    			left: '5',
+				top:"5",
+					data: ['男',  '女']  
+				},
+				series: [{
+					name: '访问来源',
+					type: 'pie',
+					radius: ['50%', '70%'],
+					avoidLabelOverlap: false,
+					label: {
+						normal: {
+							color:'#fffc00',
+							show: false,
+							position: 'center'
+						},
+						emphasis: {
+							show: true,
+							textStyle: {
+								color:'#fff',
+								fontSize: '30',
+								fontWeight: 'bold'
+							}
+						}
+					},
+					labelLine: {
+						normal: {
+							show: false
+						}
+					},
+					data: [{
+							value: 1548,
+							name: '男'
+						},
+						
+
+						{
+							value: 530,
+							name: '女'
+						}
+					],
+					 color: ['rgb(112,226,229)','rgb(255,224,114)','rgb(231,151,212)']
+				}]
+			};
+
+			myChart.setOption(option);
+
+			//		main_62       
+			var myChart = echarts.init(document.getElementById('main_62'));
+			var i=0;
+    	 	var colors=['#393939','#f5b031','#fad797','#59ccf7','#c3b4df'];
+			option = {
+				title: {
+					text: '地区占比',
+					textStyle: {
+						color: '#fff',
+						fontSize:14
+//,						
+					},
+					subtext: '',
+					x: 'center'
+				},
+				tooltip: {
+					trigger: 'item',
+					formatter: "{a} <br/>{b}: {c} ({d}%)"
+				},
+				legend: {
+					orient: 'vertical',
+					x: 'left',
+					textStyle: {
+        				color: '#fff'
+    			},
+    			left: '0',
+				top:"5",
+					data: ['一线', '二线', '其他']
+				},
+				series: [{
+					name: '访问来源',
+					type: 'pie',
+					radius: ['50%', '70%'],
+					avoidLabelOverlap: false,
+					label: {
+						normal: {
+							color:'#fffc00',
+							show: false,
+							position: 'center'
+						},
+						emphasis: {
+							show: true,
+							textStyle: {
+								color:'#fff',
+								fontSize: '30',
+								fontWeight: 'bold'
+							}
+						}
+					},
+					labelLine: {
+						normal: {
+							show: false
+						}
+					},
+					data: [{
+							value: 1200,
+							name: '一线'
+						},
+						{
+							value: 701,
+							name: '二线'
+						},
+
+						{
+							value: 600,
+							name: '其他'
+						}
+					],
+					 color: ['rgb(255,167,137)','rgb(231,151,212)','rgb(96,246,191)']
+				}]
+			};
+
+			myChart.setOption(option);
+
+			//		main_63     
+			var myChart = echarts.init(document.getElementById('main_63'));
+			option = {
+				title: {
+					text: '年龄段占比',
+					textStyle: {
+						color: '#fff',
+						fontSize:14
+//,						
+					},
+					subtext: '',
+					x: 'center'
+				},
+				tooltip: {
+					trigger: 'item',
+					formatter: "{a} <br/>{b}: {c} ({d}%)"
+				},
+				legend: {
+					orient: 'vertical',
+					x: 'left',
+					textStyle: {
+        				color: '#fff'
+    			},
+    			top:"5",
+					data: ['70s', '80s', '90s', '00s']
+				},
+				series: [{
+					name: '访问来源',
+					type: 'pie',
+					radius: ['50%', '70%'],
+					avoidLabelOverlap: false,
+					label: {
+						normal: {
+							show: false,
+							position: 'center'
+						},
+						emphasis: {
+							show: true,
+							textStyle: {
+								fontSize: '30',
+								fontWeight: 'bold'
+							}
+						}
+					},
+					labelLine: {
+						normal: {
+							show: false
+						}
+					},
+					data: [{
+							value: 538,
+							name: '70s'
+						},
+						{
+							value: 935,
+							name: '80s'
+						},
+						{
+							value: 691,
+							name: '90s'
+						},
+						{
+							value: 331,
+							name: '00s'
+						}
+					],
+					 color: ['rgb(174,146,255)','#ffe900','rgb(248,150,150)','rgb(130,180,255)']
+				}]
+			};
+
+			myChart.setOption(option);
+
+			//		main_64        
+			var myChart = echarts.init(document.getElementById('main_64'));
+			option = {
+				title: {
+					text: '兴趣占比',
+					textStyle: {
+						color: '#fff',
+						fontSize:14
+//,						
+					},
+					subtext: '',
+					x: 'center'
+				},
+				tooltip: {
+					trigger: 'item',
+					formatter: "{a} <br/>{b}: {c} ({d}%)"
+				},
+				legend: {
+					orient: 'vertical',
+					x: 'left',
+						 textStyle: {
+        				color: '#fff'
+    			},
+    			top:"5",
+					data: ['专业', '非专业']
+				},
+				series: [{
+					name: '访问来源',
+					type: 'pie',
+					radius: ['50%', '70%'],
+					avoidLabelOverlap: false,
+					label: {
+						normal: {
+							show: false,
+							position: 'center'
+						},
+						emphasis: {
+							show: true,
+							textStyle: {
+								fontSize: '30',
+								fontWeight: 'bold'
+							}
+						}
+					},
+					labelLine: {
+						normal: {
+							show: false
+						}
+					},
+					data: [{
+							value: 335,
+							name: '专业'
+						},
+						{
+							value: 1000,
+							name: '非专业'
+						}
+					],
+					 color: ['rgb(234,255,0)','rgb(0,246,255)']
+				}]
+			};
+
+			myChart.setOption(option);
+
+			//		main_65       
+			var myChart = echarts.init(document.getElementById('main_65'));
+			option = {
+				title: {
+					text: '活跃度',
+					textStyle: {
+						color: '#fff',
+						fontSize:14
+//,						
+					},
+					subtext: '',
+					x: 'center'
+				},
+				tooltip: {
+					trigger: 'axis',
+					axisPointer: {
+						type: 'cross',
+						label: {
+							backgroundColor: '#6a7985'
+						}
+					}
+				},
+				legend: {
+					top:"15%",
+					left:"50px",
+					
+					data: ['频次', '金钱', '时间'],
+					 textStyle: {
+        				color: '#ccc'
+    				},
+				},
+				toolbox: {
+					feature: {
+						saveAsImage: {}
+					},
+					top: '14%',
+				},
+				grid: {
+					left: '%',
+					right: '20%',
+					bottom: '18%',
+					containLabel: true
+				},
+				xAxis: [{
+					type: 'category',
+					boundaryGap: false,
+					axisLine:{
+		               lineStyle:{
+		                       color:'#fff',
+		                       width:2,//这里是为了突出显示加上的
+		                        }
+					},
+					data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日']
+				}],
+				yAxis: [{
+					type: 'value',
+					axisLine:{
+		               lineStyle:{
+		                       color:'transparent',
+		                       width:1,//这里是为了突出显示加上的
+		                        }
+						}
+				}],
+				series: [
+					{
+						name: '金钱',
+						type: 'line',
+						stack: '总量',
+						areaStyle: {},
+						data: [220, 182, 191, 234, 290, 330, 310],
+						 color: ['rgb(222,255,0)']
+						 
+					},
+					{
+						name: '时间',
+						type: 'line',
+						stack: '总量',
+						areaStyle: {},
+						data: [150, 232, 201, 154, 190, 330, 410],
+						 color: ['rgb(255,91,214)']
+					},
+					{
+						name: '频次',
+						type: 'line',
+						stack: '总量',
+						areaStyle: {
+							normal: {}
+						},
+						data: [320, 332, 301, 334, 390, 330, 320],
+						 color: ['rgb(147,229,253)']
+					}
+				]
+			};
+
+			myChart.setOption(option);
+		</script>
+	</body>
+
+</html>
